@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/15.1.3/Tone.min.js"></script>
+        <link rel="stylesheet" href="components/marlotron-duo/styles.css">
+        <script src="components/marlotron-duo/index.js"></script>
+        <title>Marlotron Duo ~ A Replica Dual Oscillator Synth ~ CS50x 2024 Final Project</title>
+    </head>
+    <body class="content">
+        <nav id="top">
+            <div class="nav-item"><a href="#marlotron-duo-synth">Synth</a></div>
+            <div class="nav-item"><a href="#features">Features</a></div>
+            <div class="nav-item"><a href="#user-guide">User Guide</a></div>
+            <div class="nav-item"><a href="#open-source">Open Source</a></div>
+            <div class="nav-item"><a href="#code-guide">Code Guide</a></div>
+            <div class="nav-item"><a href="#cs50">CS50x 2024</a></div>
+        </nav>
+        <div class="alert"></div>
+        <header>
+            <div class="pre-title">saltofthemar presents...</div>
+            <h1 class="title">Marlotron Duo</h1>
+            <div class="tagline">A replica ribbon synthesizer built with Web Audio and Tone.js for CS50x</div>
+        </header>
+        <div class="top-link"><a href="#top">^ Top ^</a></div>
+        <section id="introduction">
+            <div class="container">
+                <h2>Browser-Based FM Synthesis</h2>
+                <p>
+                    Explore the sonic territory of FM synthesis from your browser! The Marlotron Duo pays homage to <a href="https://www.korg.com" target="_blank">Korg</a>, aiming to deliver the authentic experience of their <a href="https://www.korg.com/us/products/dj/monotron_duo/" target="_blank">Monotron Duo</a> pocket synthesizer in a browser environment. The distinctive character of the original hardware has been meticulously recreated based on the electrical schematic, and all parameters have been carefully tuned by ear, using JavaScript, the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">Web Audio API</a>, <a href="https://tonejs.github.io/" target="_blank">Tone.js</a>, and math. Many thanks to Korg for the musical inspiration. <a href="#cs50">This was CS50</a>!
+                </p>
+            </div>
+        </section>
+
+        <section id="marlotron-duo-synth">
+            <h2>The Synth</h2>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Hardware-accurate emulation</h2>
+                <p>
+                    Based on the audio routing in the hardware’s <a href="https://www.korg.com/us/support/download/product/0/109/#manual" target="_blank">schematic drawing</a>, this emulation aims to capture the nuances of the original analog sound and functionality, including real-time LED feedback showing modulation intensity, and DAW-like zero-latency parameter controls.
+                </p>
+
+                <h3>Authentic analog architecture</h3>
+                <div class="feature">
+                    <div class="feature-image img-oscillators"></div>
+                    <p>
+                        The voice of the synth originates from two voltage-controlled oscillators: VCO1 (the carrier) serves as the primary voice, delivering rich sawtooth waves, while VCO2 (the modulator) features an asymmetric pitch range (-3/+1 octaves), achieving both deep bass modulation and subtle de-tuning. A cross-modulation (X-MOD) system creates sounds ranging from vibratos to extreme FM textures.
+                    </p>
+                </div>
+
+                <h3>Realistic filter design</h3>
+                <div class="feature">
+                    <div class="feature-image img-filters"></div>
+                    <p>
+                        VCFs are modelled after Korg's famous MS-20 filter, with a classic -12dB/octave lowpass design and peak resonance response matched to their original (20Hz - 8kHz) hardware. Dynamic gain compensation is used to maintain a consistent volume at high resonance at any pitch.
+                    </p>
+                </div>
+
+                <h3>Multi-Mode Ribbon Controller</h3>
+                <div class="feature">
+                    <div class="feature-image img-ribbon"></div>
+                    <p>
+                        Closely mimicking the analog voltage divider’s behaviour, the ribbon controller features four play modes which change how the keys are quantized by scale: Chromatic, Major, Minor and Bypass. The continuous pitch keyboard allows for expressive slides, and a drone button has been added to allow for for sustained sounds (note: the drone button is the only synth component that does not exist on the original hardware).
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="user-guide">
+            <div class="container">
+                <h2>User Guide</h2>
+
+                <h3>Getting Started</h3>
+                <ol>
+                    <li><strong>Power Up</strong>: Click any mode other than 'Standby' to start the synthesizer</li>
+                    <li><strong>Play Notes</strong>: Click and drag on the ribbon keyboard to play notes</li>
+                    <li><strong>Stop Sound</strong>: Release the ribbon or switch to 'Standby' mode</li>
+                    <li><strong>Engage Drone Mode</strong>: Press the 'Drone' button to enable sustained notes while tweaking parameters</li>
+                </ol>
+
+                <h3>Main Controls</h3>
+                
+                <h4>Mode Switch</h4>
+                <div class="faq">
+                    <div class="faq-image img-mode-switch"></div>
+                    <ul class="faq-text">
+                        <li><strong>Standby</strong>: Synth is off, no sound output</li>
+                        <li><strong>VCO1</strong>: Only the carrier oscillator plays</li>
+                        <li><strong>VCO1+2</strong>: Both oscillators play audibly together</li>
+                    </ul>
+                </div>
+
+                <h4>Ribbon Keyboard Modes</h4>
+                <div class="faq">
+                    <div class="faq-image img-ribbon"></div>
+                    <ul class="faq-text">
+                        <li><strong>Chromatic</strong>: Play all semitones</li>
+                        <li><strong>Major</strong>: Snaps to major scale notes</li>
+                        <li><strong>Minor</strong>: Snaps to minor scale notes</li>
+                        <li><strong>Bypass</strong>: Continuous pitch sliding (no note quantization)</li>
+                    </ul>
+                </div>
+
+                <h4>Drone Toggle</h4>
+                <div class="faq">
+                    <div class="faq-image img-drone-toggle"></div>
+                    <ul class="faq-text">
+                        <li><strong>Off</strong>: Notes stop when releasing the ribbon</li>
+                        <li><strong>On</strong>: Notes continue playing after release (great for experimenting with parameters)</li>
+                    </ul>
+                </div>
+
+                <h3>Sound Shaping Controls</h3>
+
+                <h4>VCO1 Pitch</h4>
+                <div class="faq">
+                    <div class="faq-image img-vco1"></div>
+                    <ul class="faq-text">
+                        <li>Center position is base pitch</li>
+                        <li>Turn right: Raise pitch up to 1 octave</li>
+                        <li>Turn left: Lower pitch up to 1 octave</li>
+                    </ul>
+                </div>
+
+                <h4>VCO2 Pitch</h4>
+                <div class="faq">
+                    <div class="faq-image img-vco2"></div>
+                    <ul class="faq-text">
+                        <li>Center position tracks VCO1</li>
+                        <li>Turn right: Raise pitch up to 1 octave</li>
+                        <li>Turn left: Lower pitch up to 3 octaves (great for bass sounds)</li>
+                    </ul>
+                </div>
+
+                <h4>X-MOD Intensity</h4>
+                <div class="faq">
+                    <div class="faq-image img-xmod"></div>
+                    <ul class="faq-text">
+                        <li>Controls how much of VCO2's signal modulates VCO1</li>
+                        <li>Low settings: Subtle vibrato effects</li>
+                        <li>High settings: Dramatic FM sounds</li>
+                        <li>Effect is more pronounced at higher frequencies</li>
+                    </ul>
+                </div>
+
+                <h4>VCF Cutoff</h4>
+                <div class="faq">
+                    <div class="faq-image img-cutoff"></div>
+                    <ul class="faq-text">
+                        <li>Controls the filter's cutoff frequency</li>
+                        <li>Turn left: Darker, mellower sound</li>
+                        <li>Turn right: Brighter, more present sound</li>
+                        <li>Range: 20Hz to 8kHz</li>
+                    </ul>
+                </div>
+
+                <h4>VCF Peak (Resonance)</h4>
+                <div class="faq">
+                    <div class="faq-image img-peak"></div>
+                    <ul class="faq-text">
+                        <li>Emphasizes frequencies around the cutoff point</li>
+                        <li>Low settings: Subtle filtering</li>
+                        <li>High settings: Sharp feedback character</li>
+                        <li>Self-oscillates at maximum settings</li>
+                    </ul>
+                </div>
+
+                <h3>Live Visual Feedback of Frequency Rates</h3>
+                <div class="faq">
+                    <ul class="faq-text">
+                        <li>VOC2 dial pulses in response to the active frequencies</li>
+                        <li>Faster pulsing indicates higher frequencies</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="open-source">
+            <div class="container">
+                <h2>Open Source Resource</h2>
+                <p>
+                   I hope that this web synth can serve both as a practical learning tool for web audio synthesis and a fun and playable instrument for anyone interested in sound design on the web. 
+                </p>
+                <p>
+                    The codebase is freely available <a href="https://github.com/saltofthemar/marlotron-duo" target="_blank">on my GitHub</a>, as I hope others might find it a valuable resource for translating analog synthesis concepts to digital browser-based synthesis. It is thoroughly documented inline with comments to describe the implementation details and to serve as a reference for similar projects. It is designed as a self-contained web component, so you can drop it into your own website to play around! See the README for details.
+                </p>
+
+                <p>
+                    The codebase demonstrates several key concepts in web audio programming:
+                </p>
+                <ul>
+                    <li>Practical application of the Web Audio API and Tone.js</li>
+                    <li>Real-time audio parameter handling</li>
+                    <li>Musical scale implementation and frequency calculations</li>
+                    <li>Event-driven audio programming</li>
+                    <li>Hardware emulation techniques</li>
+                </ul>
+            </div>
+        </section>
+        <section id="code-guide">
+            <div class="container">
+                <h2>Code Guide</h2>
+                <h3>Directory Structure</h3>
+                <pre>
+marlotron-duo/
+│
+├── index.html             # Main landing page with project description and synth embed
+├── main.css               # Global styles for the landing page
+│
+└── components/
+    └── marlotron-duo/     # Self-contained synth component
+        ├── index.js       # Component initialization and registration
+        ├── template.html  # Synth interface HTML template
+        ├── styles.css     # Synth-specific styling
+        │
+        └── lib/               # Core synth functionality
+            ├── dial.js        # Custom dial/knob control implementation
+            ├── interface.js   # UI event handling and parameter management
+            └── synth-core.js  # Audio engine and synthesis implementation
+                </pre>
+                <h3>File Descriptions</h3>
+                <ol>
+                    <li><h4>Root Level</h4>
+                        <ul>
+                            <li><code>index.html</code>: Landing page that introduces the project and embeds the synth</li>
+                            <li><code>main.css</code>: Global styles for the landing page layout and typography</li>
+                        </ul>
+                    </li>
+                    <li><h4>Marlotron Duo Component</h4>
+                        <ul>
+                            <li><code>marlotron-duo/</code>:
+                                <ul>
+                                    <li><code>index.js</code>: Component initialization and registration</li>
+                                    <li><code>template.html</code>: Synth interface HTML template</li>
+                                    <li><code>styles.css</code>: Synth-specific styling</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><h4>Library Files</h4>
+                        <ul>
+                            <li><code>marlotron-duo/lib/</code>:
+                                <ul>
+                                    <li><code>dial.js</code>: DAW-like dial/knob control implementation</li>
+                                    <li><code>interface.js</code>: UI event handling and parameter management</li>
+                                    <li><code>synth-core.js</code>: Audio engine and synthesis implementation
+                                        <ul>
+                                            <li>Oscillator configuration and audio routing</li>
+                                            <li>Envelope handling and MS-20 filter emulation</li>
+                                            <li>Cross-modulation system</li>
+                                            <li>Musical scale handling</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                <h3>Audio Signal Path</h3>
+                <pre>
+    VCO2 (Modulator)─→[VCA2]────→[Mixer]
+    sawtooth               │       │
+                           │       │
+    VCO1 (Carrier)─→[VCA1]─┘       │
+    sawtooth                       │
+                                   ↓
+                              [MS-20 VCF]
+                             -12dB/octave
+                                   │
+                                   ↓
+                         [Filter Compensation]
+                                   │
+                                   ↓
+                             [Destination]
+                              (Speakers)
+                </pre>
+                <h3>Control Signal Path</h3>
+                <h4>Oscillators</h4>
+                <pre>
+                        [Ribbon Position]───→[Note Calculator]───→[VCO1 Frequency]
+                        │
+                        └──→[Base Frequency]
+                                ↑
+    [VCO2 Pitch Slider]───→[Pitch Scaling]───┬──→[VCO2 Frequency]
+    (-3/+1 octaves)                          │
+                                             │
+    [VCO1 Pitch Slider]───→[Pitch Scaling]───┘
+    (±1 octave)
+                </pre>
+                <h4>X-MOD</h4>
+                <pre>
+    [X-MOD Slider]───→[Exponential Scaling]───→[xModGain]
+        (^1.5)              │
+                            ↓
+    VCO2 Output───────→[VCO1 Frequency]
+                </pre>
+                <h4>Voltage Controlled Filters (VCFs)</h4>
+                <pre>
+    [VCF Cutoff Slider]───→[Exponential Scaling]───→[VCF Frequency]
+    (20Hz - 8kHz)
+
+    [VCF Peak Slider]───→[Exponential Scaling]───→[VCF Resonance]
+    (Q: 0.5 - 50)                                      │
+                                                       ↓
+                                            [Filter Compensation Gain]
+                </pre>
+                <h4>Drone Button</h4>
+                <pre>
+    [Synth Mode]───→[VCA Gating]───→[VCA1/VCA2 Gains]
+    [Drone Mode]──┘
+                </pre>
+            </div>
+        </section>
+        <section id="cs50">
+            <div class="container">
+                <h2>CS50x 2024 Final Project</h2>
+                <p>
+                    My journey into learning more JavaScript started out as a <a href="https://cs50.harvard.edu/x/2024/project/" target="_blank">final project</a> for <a href="https://cs50.harvard.edu/x/2024/" target="_blank">CS50x 2024</a>, and quickly became a deep dive into web audio and synthesis. With serious time constraints, I decided to choose the idea that was most connected to my personal passion for electronic music and how it relates to programming. I had to pick something that would keep me burning the midnight oil as the deadline loomed closer, and FM synthesis was a sure bet.
+                </p>
+                <p>
+                    I aimed to create a JavaScript replica of a small, simple, analog synthesizer I love made by Korg (the <a href="https://www.korg.com/us/products/dj/monotron_duo/" target="_blank">Monotron Duo</a>) using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">Web Audio API</a> and <a href="https://tonejs.github.io/" target="_blank">Tone.js</a>, emulating the <a href="https://www.korg.com/us/support/download/product/0/109/#manual" target="_blank">hardware specifications</a> as closely as possible. I did bite off as much as I could chew without realizing it!
+                </p>    
+                <p>
+                    Following my heart allowed me to really engage with JavaScript, learn all about Tone.js and Web Audio API, and completely dissect an FM synthesizer based on its electrical schematic. This is very exciting! 
+                </p>    
+                <p>
+                    After spending every spare moment fine tuning by ear the ranges of the oscillators and filters and translating that to code and mathematical calculations, I have never felt so intimate with an electronic instrument as I now do with my little synth. CS50 and Korg, thank you!
+                </p>    
+                <blockquote>
+                    “Do what you love, you’ll never work a day in your life!” <br> ~ <a href="https://www.youtube.com/watch?v=Z0sq3T5fErQ" target="_blank">Letterkenny</a>
+                </blockquote>
+                <h3>Built with an AI co-pilot</h3>
+                <p>
+                    Note that AI was used to create this synth. It would be impossible to comment the code where it was used, since it helped me with everything. From assisting me to debug complex event listeners, to teaching me more concise syntax, to painstakingly reviewing the electrical schematics over and over again, to guiding me with the frequency and modulation calculations, to reviewing the code for best and DRYest practices, Claude 3.5 Sonnet was my invaluable co-pilot. 
+                </p>
+            </div>
+        </section>
+        <footer>
+            <p>
+                <a href="https://marlotron.saltofthemar.ca">Marlotron Duo Web Synth</a> &copy;2024-2025 by Marlowe Brennan under the <a href="LICENSE.txt" target="_blank">MIT License</a> | Check it out <a href="https://github.com/saltofthemar/marlotron-duo" target="_blank">on GitHub</a>
+            </p>
+            <p>
+                <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                        alt="Valid CSS!" />
+                    </a>
+            </p>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const container = document.getElementById('marlotron-duo-synth');
+                MarlotronDuo.init(container);
+            });
+        </script>
+    </body>
+</html>

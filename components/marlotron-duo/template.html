@@ -1,0 +1,140 @@
+
+<!-- Template for the Marlotron Duo synthesizer -->
+<div class="marlotron-duo">
+
+    <div id="status"></div> 
+
+    <div id="synth-header">
+
+        <!-- Ribbon Mode Switch (Chromatic, Major, Minor, Bypass) -->
+        <div class="ribbon-mode-switch">
+            <input type="radio" id="ribbon-mode-chromatic" name="ribbon-mode" value="chromatic" checked>
+            <label for="ribbon-mode-chromatic">Chromatic</label>
+            <input type="radio" id="ribbon-mode-major" name="ribbon-mode" value="major">
+            <label for="ribbon-mode-major">Major</label>
+            <input type="radio" id="ribbon-mode-minor" name="ribbon-mode" value="minor">
+            <label for="ribbon-mode-minor">Minor</label>
+            <input type="radio" id="ribbon-mode-bypass" name="ribbon-mode" value="bypass">
+            <label for="ribbon-mode-bypass">Bypass</label>
+            <!-- The radio inputs are hidden and replaced by the button -->
+            <button type="button" id="ribbon-mode-button" class="ribbon-mode-button"></button>
+        </div>  <!-- end ribbon-mode-switch -->
+
+        <div class="branding">
+            <div class="logo">SOTM</div>
+            <div class="title">Duo Marlotron</div>
+            <div class="description">Digital Ribbon Synthesizer</div>
+        </div>
+
+        <div class="speaker"></div>
+    </div> <!-- end synth-header -->
+
+    <div id="synth-controls">
+
+        <div class="synth-mode-controls">
+            <!-- Mode Switch (Standby(audio context suspended), VCO1 (only OSC1), and VCO1+2 (both OSC1 and OSC2) )-->
+            <div class="synth-mode-switch">
+                <input type="radio" id="mode-standby" name="synth-mode" value="standby" checked>
+                <label for="mode-standby">Standby</label>
+                <input type="radio" id="mode-vco1" name="synth-mode" value="vco1">
+                <label for="mode-vco1">VCO1</label>
+                <input type="radio" id="mode-vco1and2" name="synth-mode" value="vco1and2">
+                <label for="mode-vco1and2">VCO1+2</label>
+            </div>  <!-- end mode-switch -->
+        </div> <!-- end mode-controls -->
+        
+        <div class="vco-controls">
+
+            <!-- VCO1 oscillates at a base frequency, selected using Droner or the ribbon controller -->
+            <div class="dial vco1">
+                <div class="dial-title">VCO1</div>
+                <!-- The default pitch range for VOC1 is 32.7Hz (C1) to 440Hz (A4) -->
+                <input type="range" min="0" max="100" value="0" class="dial-input" id="vco1-pitch">
+                <div class="dial-division"></div>
+                <div class="dial-visual">
+                    <div class="dial-indicator"></div>
+                </div>
+                <div class="dial-label">Pitch</div>
+            </div> <!-- end vco1 -->
+        
+            <!-- X-MOD Intensity modulates VCO1's audio output based on VCO2's frequency -->
+            <div class="dial xmod">
+                <div class="dial-title">X-Mod</div>
+                <input type="range" min="0" max="100" value="0" class="dial-input" id="xmod-intensity">
+                <div class="dial-division"></div>
+                <div class="dial-visual">
+                    <div class="dial-indicator"></div>
+                </div>
+                <div class="dial-label">X-Mod Int.</div>
+            </div> <!-- end xmod -->
+
+        <!-- VCO2 oscillates at a frequency that is 2 octaves higher than VCO1. It's range is dependent on VCO1. -->
+            <div class="dial vco2">
+                <div class="dial-title">VCO2</div>
+                <!-- VOC2's pitch range is based on the Monotron Duo circuit, starting 2 octaves above VCO1 (4x the frequency) -->
+                <input type="range" min="0" max="100" value="0" class="dial-input" id="vco2-pitch">
+                <div class="dial-division"></div>
+                <div class="dial-visual">
+                    <div class="dial-indicator"></div>
+                </div>
+                <div class="vco2-glow"></div>
+                <div class="dial-label">Pitch</div>
+            </div> <!-- end vco2 -->
+
+        </div><!-- end vco-controls -->
+
+        <div class="vcf-controls">
+            <div class="dial-title">VCF</div>
+            <div class="dial vcf-cutoff">
+                <input type="range" min="0" max="100" value="100" class="dial-input" id="vcf-cutoff"> <!-- Hidden input -->
+                <div class="dial-division"></div>
+                <div class="dial-visual">
+                    <div class="dial-indicator"></div>
+                </div>
+                <div class="dial-label">Cutoff</div>
+            </div>
+
+            <div class="dial vcf-peak">
+                <input type="range" min="0" max="100" value="0" class="dial-input" id="vcf-peak">
+                <div class="dial-division"></div>
+                <div class="dial-visual">
+                    <div class="dial-indicator"></div>
+                </div>
+                <div class="dial-label">Peak</div>
+            </div> <!-- end vcf-peak -->
+
+        </div> <!-- end vcf-controls -->   
+
+    </div> <!-- end of synth-controls -->
+
+    <div id="ribbon-controller">
+
+        <div class="drone-control">
+            <button id="drone-toggle">Drone</button>
+        </div>
+
+        <div class="ribbon-keyboard">
+            <div class="keys">
+                <div class="key diatonic" data-note="A3"></div>
+                <div class="key chromatic" data-note="A#3"></div>
+                <div class="key diatonic" data-note="B3"></div>
+                <div class="key diatonic" data-note="C4"></div>
+                <div class="key chromatic" data-note="C#4"></div>
+                <div class="key diatonic" data-note="D4"></div>
+                <div class="key chromatic" data-note="D#4"></div>
+                <div class="key diatonic" data-note="E4"></div>
+                <div class="key diatonic" data-note="F4"></div>
+                <div class="key chromatic" data-note="F#4"></div>
+                <div class="key diatonic" data-note="G4"></div>
+                <div class="key chromatic" data-note="G#4"></div>
+                <div class="key diatonic" data-note="A4"></div>
+                <div class="key chromatic" data-note="A#4"></div>
+                <div class="key diatonic" data-note="B4"></div>
+                <div class="key diatonic" data-note="C5"></div>
+                <div class="key chromatic" data-note="C#5"></div>
+                <div class="key diatonic" data-note="D5"></div>
+            </div>
+        </div> <!-- end ribbon-keyboard -->
+
+    </div> <!-- end of ribbon-controller -->
+</div> <!-- end of marlotron-duo -->
