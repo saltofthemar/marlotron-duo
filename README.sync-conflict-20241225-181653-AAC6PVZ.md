@@ -109,7 +109,7 @@ The code demonstrates several key concepts in web audio programming:
     
 ### 💻 How to include the synth in an HTML page
 
-1. Copy the whole directory called 'marlotron-duo', which is inside the '/components' directory of this repo. You can put it wherever you want, depending on your own project structure:
+1. Copy the whole directory called 'marlotron-duo', which is inside the '/components' directory of this project on GitHub:
 
 2. Inside the `head` element of your HTML, paste the code needed to connect the component to the needed CSS and JS files:
 ```
@@ -131,8 +131,6 @@ The code demonstrates several key concepts in web audio programming:
 ```
 <div id="marlotron-duo-synth"></div>
 ```
-
-5. Save your changes, and you should now have a functional Marlotron Duo web synth on your page.
 
 ## 🧰 Code Guide
 
