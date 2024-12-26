@@ -246,4 +246,3 @@ After spending every spare moment fine tuning by ear the ranges of the oscillato
 ### 🛷 Built with an AI co-pilot
 
 Note that AI was used to create this synth. It would be impossible to comment the code where it was used, since it helped me with everything. From assisting me to debug complex event listeners, to teaching me more concise syntax, to painstakingly reviewing the electrical schematics over and over again, to guiding me with the frequency and modulation calculations, to reviewing the code for best and DRYest practices, Claude 3.5 Sonnet was my invaluable co-pilot.
-
