@@ -6,6 +6,7 @@ A replica ribbon-based pocket synthesizer built with Web Audio and Tone.js
 Explore the sonic territory of FM synthesis from your browser! The Marlotron Duo pays homage to [Korg](https://www.korg.com), aiming to deliver the authentic experience of their [Monotron Duo](https://www.korg.com/us/products/dj/monotron_duo/) pocket synthesizer in a browser environment. The distinctive character of the original hardware has been meticulously recreated based on the electrical schematic, and all parameters have been carefully tuned by ear, using JavaScript, the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API), [Tone.js](https://tonejs.github.io/), and math. Many thanks to Korg for the musical inspiration. This project was created for [CS50x 2024](#cs50x-2024-final-project)!
 
 Play the instrument now at [saltofthemar.ca/marlotron-duo](https://marlotron.saltofthemar.ca)
+Watch the short walkthough video here: [https://youtu.be/EjjShJw88W0](https://youtu.be/EjjShJw88W0)
 
 ![Image of the Marlotron Duo web synth.](assets/images/marlotron-duo-screen.png)
 
@@ -16,7 +17,7 @@ Based on the audio routing in the hardware’s [schematic drawing](https://www.k
 ### 🎛 Authentic analog architecture
 The voice of the synth originates from two voltage-controlled oscillators: VCO1 (the carrier) serves as the primary voice, delivering rich sawtooth waves, while VCO2 (the modulator) features an asymmetric pitch range (-3/+1 octaves), achieving both deep bass modulation and subtle de-tuning. A cross-modulation (X-MOD) system creates sounds ranging from vibratos to extreme FM textures.
 
-## 🎚 Realistic filter design
+### 🎚 Realistic filter design
 
 VCFs are modelled after Korg's famous MS-20 filter, with a classic -12dB/octave lowpass design and peak resonance response matched to their original (20Hz - 8kHz) hardware. Dynamic gain compensation is used to maintain a consistent volume at high resonance at any pitch.
 
